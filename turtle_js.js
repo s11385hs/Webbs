@@ -7,48 +7,7 @@ Ext.Loader.setConfig({
     });
 Ext.require('Chart.ux.HighChart');
 Ext.QuickTips.init();
-/*
-///////////
-document.onkeydown = function(e) { 
-    var ctrl;    
-    // Mozilla(Firefox, NN) and Opera 
-    if (e != null) { 
-        keycode = e.which; 
-        ctrl = typeof e.modifiers == 'undefined' ? e.ctrlKey : e.modifiers & Event.CONTROL_MASK;
-	// キーコードの文字を取得 
-	keychar = String.fromCharCode(keycode).toUpperCase(); 
-	
-	// Ctrl同時押し
-	if (ctrl) { 
-	    if (keychar == "Z") { 
-		alert('Ctrl+Z'); 
-	    } 
-	}
-        // イベントの上位伝播を防止 
-        e.preventDefault(); 
-        e.stopPropagation(); 
-	// Internet Explorer 
-    } else { 
-        keycode = event.keyCode; 
-        ctrl = event.ctrlKey;
-	// キーコードの文字を取得 
-	keychar = String.fromCharCode(keycode).toUpperCase(); 
-	
-	// Ctrl同時押し
-	if (ctrl) { 
-	    if (keychar == "Z") { 
-		alert('Ctrl+Z'); 
-	    } 
-	}
-        // イベントの上位伝播を防止 
-        event.returnValue = false; 
-        event.cancelBubble = true; 
-    } 
-    
 
-}
-/////////     
-*/
 Ext.onReady(function(){
 	    
 	Ext.state.Manager.setProvider(Ext.create('Ext.state.CookieProvider'));
@@ -57,8 +16,6 @@ Ext.onReady(function(){
 	var cellEditing = Ext.create('Ext.grid.plugin.CellEditing', {
 		clicksToEdit: 1
 		});
-	
-	
 	
 	// sample static data for the store
 	var grid1_null = [
@@ -146,15 +103,12 @@ Ext.onReady(function(){
 		var responseJSON = JSON.parse(response.responseText);
 		var responseJSON_process  = responseJSON.Process;
 		var responseJSON_variable = responseJSON.Variable;
-		
 		session_ID = responseJSON.ID; 
-		//console.log(responseJSON_process);		
 		grid1.getStore().loadData(responseJSON_variable);
 		grid2.getStore().loadData(responseJSON_process);
 	       	alert(session_ID)
 	    }
 	}
-
 
 	//Ajax failed
 	function handleFailure(response) { 
@@ -215,7 +169,6 @@ Ext.onReady(function(){
 		margin: '2 2 0 1',
 		stateful: true,
 		stateId: 'stateGrid',
-		//width: Ext.getBody().getViewSize().width * 0.28,
 		columnWidth: 1.5/4,
 		height: Ext.getBody().getViewSize().height -150,
 		autoScroll: true,
@@ -225,17 +178,14 @@ Ext.onReady(function(){
 		},
 		columns: [{
 			text     : 'ID',
-			//width: '15%',
 			sortable : true,
 			dataIndex: 'v_id',
 		    },{
 			text     : 'Path',
-			//width: '35%',
 			sortable : true,
 			dataIndex: 'path'
 		    },{
 			text     : 'Value',
-			//width: '25%',
 			sortable : true,
 			dataIndex: 'value',
 			renderer : change,
@@ -262,17 +212,7 @@ Ext.onReady(function(){
 		if (selectedRecord.length) {
 		    var gridrecord = grid1.getSelectionModel().getSelection();
 		    console.log(gridrecord[0].data);
-		    //alert(gridrecord[0].data);
 		}
-		//send Ajax Request
-		/* 
-		   Ext.Ajax.request({
-		   url: "/ecell/test.cgi",
-		   method: "GET",
-		   params: params,
-		   success: handleSuccess,
-		   failure: handleFailure,
-		   });*/
             });
 	
 	console.log(Ext.getBody().getViewSize().height);
@@ -412,7 +352,6 @@ Ext.onReady(function(){
 					    xtype: 'panel',
 					    border: false,
 					    style: { "background-color": '#ffffff', "text-align": 'center'  },
-					    //html: "<div style='background-color: #ffffff'></div>",
 					    items: [ mybutton ]
 					}]
 				}]
@@ -442,33 +381,6 @@ Ext.onReady(function(){
 		alert('Sorry!! Missed (T_T)');
 	    }
 	}
-	/*   Ext.define('Restaurant', {
-	     extend: 'Ext.data.Model',
-	     fields: ['name', 'cuisine']
-	     });
-		    
-	     // make list of models
-	     var Restaurants = Ext.create('Ext.data.Store', {
-	     storeId: 'restaraunts',
-	     model: 'Restaurant',
-	     sorters: ['cuisine','name'],
-	     groupField: 'cuisine',
-	     data: [{
-	     name: '2,3-BPG',
-	     cuisine: 'Metabolite'
-	     },{
-	     name: 'BAND3',
-	     cuisine: 'Metabolite'
-	     },{
-	     name: 'JAK2-STAT5',
-	     cuisine: 'Signal Trunsduction'
-
-	     }]
-	     });
-		    
-	     var groupingFeature = Ext.create('Ext.grid.feature.Grouping',{
-	     groupHeaderTpl: 'Cuisine: {name} ({rows.length} Item{[values.rows.length > 1 ? "s" : ""]})'
-	     });*/
 	       
 	//load list model Ajax succesed
 	function load_model_success(response){
@@ -485,19 +397,6 @@ Ext.onReady(function(){
 		    }
 	}
 		   
-	/*var model_store = Ext.create('Ext.data.Store', {
-	  model: 'User',
-	  data: [],
-	  proxy: {
-	  type: 'ajax',
-	  url : '/ecell/list_models.cgi',
-	  method: "GET",
-	  params: params,
-	  success: load_model_success,
-	  failure: load_model_failure
-	  }
-	  });*/
-
     	var params = { "ID": "test" };
 
 	Ext.Ajax.request({
@@ -530,19 +429,11 @@ Ext.onReady(function(){
 		frame: true,
 		store: store_model,
 		title: 'E-Cell Library',
-		//	features: [groupingFeature],
 		columns: [{
 			text: 'model',
 			flex: 1,
 			dataIndex: 'model'
 		    }],
-		/*	fbar  : ['->', {
-			text:'Clear Grouping',
-			iconCls: 'icon-clear-group',
-			handler : function(){
-			groupingFeature.disable();
-			}
-			}]*/
 	    });
 
 	grid3.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
@@ -601,7 +492,6 @@ Ext.onReady(function(){
 				title: 'About Model',
 
 				height: Ext.getBody().getViewSize().height * 0.47,
-				//			    layout: 'fit',
 				items: [{
 					title: 'Annotation',                        
 					frame: true,
@@ -609,8 +499,6 @@ Ext.onReady(function(){
 					height: Ext.getBody().getViewSize().height * 0.20,
 					autoscroll: true,
 					html: 'Under Construction<br>Description of Model',
-					//					html: Ext.example.shortBogusMarkup
-					//iconCls:'settings'
 				    },{
 					title: 'Pathway Map',
 					autoscroll: true,
