@@ -3,25 +3,24 @@ Ext.onReady(function(){
 	new Ext.Viewport({
 		layout:'border',
 		    //		border: false,
-		items: [{
+		    items: [{
 			region: 'north',
-			    //			id: 'north-panel',
-			height: 80,
-			width: '100%',
-			margin: '1 1 1 1',
-			html: "<div><h1>Webbs</h1></div>"
-			},{
+			    height: '10%',
+			    margin: '1 1 1 1',
+			    html: "<div><h1>Webbs</h1></div>"
+			    },{
 			region:'center',
-			autoscroll: true,
-			layout:'column',		
-			margin: '1 2 0 2',
-		        items:[ tabs ]
-			},{
+			    height: '10%',
+			    autoscroll: true,
+			    layout:'fit',		
+			    margin: '1 2 0 2',
+			    items:[ tabs ]
+			    },{
 			region:'south',
-			id: 'south-panel',
-			margin: '0 2 3 2',
-			height: 25,
-			html: "<div> webbs team</div>"
-			      }]
+			    id: 'south-panel',
+			    margin: '0 2 3 2',
+			    height: '4%',
+			    html: "<div> webbs team</div>"
+				      }]
 		    });
     });

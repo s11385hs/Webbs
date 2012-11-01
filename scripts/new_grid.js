@@ -6,10 +6,6 @@ function variable_grid(responseJSON){
 	    pmargin: '2 2 0 1',
 	    stateful: true,
 	    stateId: 'stateGrid',
-	    //	    columnWidth: 4/4,
-
-	    //	    width: '40%',
-	    //	    height: 400,
 	    autoScroll: true,
 	    title: 'Variable',
 	    viewConfig: { stripeRows: true },
@@ -46,7 +42,9 @@ function variable_grid(responseJSON){
 		}],
 	    plugins: [cellEditing]
 	});
+    
     //change Value or MolarConc                                              
+    /*
     variable_grid.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
 	    if (selectedRecord.length) {
 		var gridrecord = grid1.getSelectionModel().getSelection();
@@ -54,6 +52,7 @@ function variable_grid(responseJSON){
 		//alert(gridrecord[0].data); 
 	    }
 	});
+    */
     variable_grid.getStore().loadData(responseJSON);
     return variable_grid;
 };
@@ -65,8 +64,6 @@ function process_grid (responseJSON){
 		}),
 	    stateful: true,
 	    stateId: 'stateGrid',
-	    //	    width: '40%',
-	    //	    columnWidth: 1.5/4,
 	    //height: Ext.getBody().getViewSize().height - 128,
 	    height: 400,
 	    autoScroll: true,
@@ -101,10 +98,10 @@ function process_grid (responseJSON){
 	    listeners:{
 		selectionchange: function(model, records) {
 		    if (records[0]) {
-			this.up().down('form').down('fieldset').items.items[0].setValue(records[0].data.p_id);
-			this.up().down('form').down('fieldset').items.items[1].setValue(records[0].data.expression);
-			this.up().down('form').down('fieldset').items.items[2].setValue(records[0].data.v_r_l);
-			this.up().down('form').down('fieldset').items.items[3].setValue(records[0].data.property);
+			this.up().down('form').down('fieldset').items[0].setValue(records[0].data.p_id);
+			this.up().down('form').down('fieldset').items[1].setValue(records[0].data.expression);
+			this.up().down('form').down('fieldset').items[2].setValue(records[0].data.v_r_l);
+			this.up().down('form').down('fieldset').items[3].setValue(records[0].data.property);
 		    }
 		}
 	    }

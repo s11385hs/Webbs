@@ -40,48 +40,47 @@ function handleSuccess(response) {
 		    layout : 'column',
 		    border: false,
 		    items: [
-			variable_grid( responseJSON_variable ),
-			process_grid(  responseJSON_process  ),
-			{   
-			    xtype: 'form',
-				width: '20%',
-				border: false,
-				items: [{
-				    title: 'Property Details(editable)',
-					//xtype: 'fieldset',            
-					//defaultType: 'textfield',
-					items: [{
-					    fieldLabel: 'ID',
-						name: 'p_id',
-						disabled: true,
-						editable: false,
-						allowBlank: false,
-						xtype: 'textareafield'
-						},{
-					    fieldLabel: 'Expression',
-						name: 'expression',
-						editable: false,
-						disabled: true,
-						xtype: 'textareafield',
-						allowBlank: false,
-						},{
-					    fieldLabel: 'Variable Reference List',
-							  name: 'v_r_l',
-							  disabled: true,
-							  xtype: 'textareafield',
-							  editable: false
-							  },{
-					    fieldLabel: 'Property List',
-							  xtype: 'textareafield',
-							  }]
-					},{
-				    xtype: 'panel',
-					border: false,
-					style: { "background-color": '#ffffff', "text-align": 'center'  },
-					items: [ runbutton]
+			    variable_grid( responseJSON_variable ),
+			    process_grid(  responseJSON_process  ),
+			    {   
+				xtype: 'form',
+				    border: false,
+				    items: [{
+					title: 'Property Details(editable)',
+					    //xtype: 'fieldset',            
+					    //defaultType: 'textfield',
+					    items: [{
+						fieldLabel: 'ID',
+						    name: 'p_id',
+						    disabled: true,
+						    editable: false,
+						    allowBlank: false,
+						    xtype: 'textareafield'
+						    },{
+						fieldLabel: 'Expression',
+						    name: 'expression',
+						    editable: false,
+						    disabled: true,
+						    xtype: 'textareafield',
+						    allowBlank: false,
+						    },{
+						fieldLabel: 'Variable Reference List',
+							      name: 'v_r_l',
+							      disabled: true,
+							      xtype: 'textareafield',
+							      editable: false
+							      },{
+						fieldLabel: 'Property List',
+							      xtype: 'textareafield',
+							      }]
+					    },{
+					xtype: 'panel',
+					    border: false,
+					    style: { "background-color": '#ffffff', "text-align": 'center'  },
+					    items: [ runbutton]
 					}
-				    ]
-				}]
+					]
+				    }]
 		    }).show;
     }
 };
@@ -103,21 +102,17 @@ function result_graph_success(response) {
 	charts.push(show_graph(resultJSON[0].Data, resultJSON[0].Title));
 	tabs.add({  
 		title: 'Result',
-		    //		    layout : 'fit',
-		    //width: '100%',
-		    //height: '100%',
-		    // autoScroll: true,
-		    items: [ result_tabs ],
-		    }).show();
-
-	result_tabs.items.items[0] = show_graph(resultJSON[0].Data, resultJSON[0].Title);
-        result_tabs.doLayout();
-	result_tabs.items.items[0].doLayout();
+		    layout: 'fit',
+		    width: '100%',
+    	     	    height: 600,
+		    closable: true,
+		    items: [ charts ]
+	        }).show();
     }
 }
 
 //Ajax failed
-function result_graph_failure(response) { 
+function result_graph_failure(response){ 
     if (response.responseText !== undefined) {
 	alert('Sorry!! Missed (T_T)');
     }

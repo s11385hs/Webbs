@@ -16,7 +16,7 @@ var store_model = Ext.create('Ext.data.Store', {
 	storeId: 'store_model',
 	model: 'StoreModel',
 	sorters: ['model'],
-	groupField: 'model',
+	groupField: 'model'
     });
 
 var premodel = Ext.create('Ext.grid.Panel', {
@@ -24,7 +24,7 @@ var premodel = Ext.create('Ext.grid.Panel', {
 	flex: 1,
 	border:false,
 	iconCls:'nav',
-	titleCollapsible: true,
+	//	titleCollapsible: true,
 	frame: true,
 	store: store_model,
 	title: 'E-Cell Library',
