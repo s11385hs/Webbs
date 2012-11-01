@@ -44,7 +44,6 @@ function variable_grid(responseJSON){
 	});
     
     //change Value or MolarConc                                              
-    /*
     variable_grid.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
 	    if (selectedRecord.length) {
 		var gridrecord = grid1.getSelectionModel().getSelection();
@@ -52,7 +51,6 @@ function variable_grid(responseJSON){
 		//alert(gridrecord[0].data); 
 	    }
 	});
-    */
     variable_grid.getStore().loadData(responseJSON);
     return variable_grid;
 };
