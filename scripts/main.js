@@ -10,7 +10,6 @@ Ext.onReady(function(){
 			    html: "<div><h1>Webbs</h1></div>"
 			    },{
 			region:'center',
-			    height: '10%',
 			    autoscroll: true,
 			    layout:'fit',		
 			    margin: '1 2 0 2',

@@ -5,21 +5,18 @@ var tabs_model_list = Ext.widget('panel',{
 	    frame: true,
     },
     frame: 'true',
-    layout: {
-            type: 'hbox',
-	    //            align: 'top'
-	},
+    layout: { type: 'hbox' },
     height: '100%',
     items: [{
 		flex: 3.5,
                 items:[{
-                        title: 'Uploaded Models',
+                        /*title: 'Uploaded Models',
                         split: true,
 			//			height: '100%',
                         autoscroll: true,
 			border: false,
                         items:[ selfmodel ]
-                    },{
+                    },{*/
                         title:'Model Database',
                         split: true,
 			border: false,
@@ -60,10 +57,12 @@ var tabs = Ext.create('Ext.tab.Panel', {
 	layout: 'fit',
 	items: [{
 		title: 'Model List',
+		height: '100%',
 		items:[ tabs_model_list ]
-	    },{
+	    }
+	    /*,{
 		title: 'Entity',
 		items:[ tabs_entity ]
-	    }]
+		}*/]
     });
 

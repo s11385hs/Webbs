@@ -27,6 +27,10 @@ Ext.Ajax.request({
 //Ajax request for "Entity Data"
 var session_ID = "";
 
+var tabs_entity = Ext.createWidget('tabpanel',{
+	border: false
+    });
+
 function handleSuccess(response) {
     if (response.responseText !== undefined) {
 	var responseJSON = JSON.parse(response.responseText);
@@ -35,6 +39,11 @@ function handleSuccess(response) {
 	session_ID = responseJSON.ID;
 	//	console.log(responseJSON_process);
 	alert(session_ID);
+	tabs.add({
+		title: 'Entity',
+		    items:[ tabs_entity ]
+		    }).show;
+
 	tabs_entity.add({
 		title: 'Entity ' + (tabs_entity.items.length + 1),
 		    layout : 'column',
@@ -78,7 +87,7 @@ function handleSuccess(response) {
 					    border: false,
 					    style: { "background-color": '#ffffff', "text-align": 'center'  },
 					    items: [ runbutton]
-					}
+					    }
 					]
 				    }]
 		    }).show;
