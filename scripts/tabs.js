@@ -43,26 +43,12 @@ var tabs_model_list = Ext.widget('panel',{
             }]
     });
 
-var tabs_entity = Ext.createWidget('tabpanel',{
-	border: false
-    });
-
-var result_tabs= Ext.createWidget('tabpanel', {
-	border: false,
-	items: [ {title: 'Result' + (tabs_entity.items.length + 1)} ],
-	
-    });
-
 var tabs = Ext.create('Ext.tab.Panel', {
 	layout: 'fit',
 	items: [{
 		title: 'Model List',
 		height: '100%',
 		items:[ tabs_model_list ]
-	    }
-	    /*,{
-		title: 'Entity',
-		items:[ tabs_entity ]
-		}*/]
+	    }]
     });
 

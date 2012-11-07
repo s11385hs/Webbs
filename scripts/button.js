@@ -5,8 +5,10 @@ var runbutton = Ext.create('Ext.Button', {
         width: 100,
         //      width: Ext.getBody().getViewSize().width * 0.185,               
 	//        handler: create_result_tab
+	
 	handler: function() {
 	    var params = { "session_ID": session_ID };            
+	    
        	    //send Ajax Request
 	    Ext.Ajax.request({ 
 		    url: "/ecell/python_jy3.cgi",
