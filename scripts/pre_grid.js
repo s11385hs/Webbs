@@ -9,8 +9,10 @@ var selModel = Ext.create('Ext.selection.CheckboxModel', {
 
 Ext.define('StoreModel', {
 	extend: 'Ext.data.Model',
-	    fields: ['model']
+	    //fields: [{name:'model'}]
+	    fields: [{name:'model_name'}]
 	    });
+
 // make list of models
 var store_model = Ext.create('Ext.data.Store', {
 	storeId: 'store_model',
@@ -32,7 +34,8 @@ var premodel = Ext.create('Ext.grid.Panel', {
 	columns: [{
 		text: 'model',
 		flex: 1,
-		dataIndex: 'model'
+		//dataIndex: 'model'
+		dataIndex: 'model_name'
 	    }],
     });
 

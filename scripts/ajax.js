@@ -1,8 +1,12 @@
 //Ajax request "load list of model"                                                                      
 function load_model_success(response){
     if (response.responseText !== undefined) {
-	var resultJSON = JSON.parse(response.responseText);
-	premodel.getStore().loadData(resultJSON);
+	var responseJSON = JSON.parse(response.responseText);
+	var responseJSON_model_name = responseJSON.model_name;
+	//premodel.getStore().loadData(responseJSON);
+	premodel.getStore().loadData(responseJSON.model_name);
+	alert(responseJSON.model_name);
+	//alert(responseJSON);
     }
 }
 
@@ -15,7 +19,8 @@ function load_model_failure(response){
 
 var params = { "ID": "test" };
 Ext.Ajax.request({
-	url: "/ecell/list_models.cgi",
+	//url: "/ecell/list_models.cgi",
+	url: "/ecell/marco.cgi",
 	    method: "GET",
 	    params: params,
 	    success: load_model_success,
