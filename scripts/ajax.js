@@ -3,10 +3,7 @@ function load_model_success(response){
     if (response.responseText !== undefined) {
 	var responseJSON = JSON.parse(response.responseText);
 	var responseJSON_model_name = responseJSON.model_name;
-	//premodel.getStore().loadData(responseJSON);
 	premodel.getStore().loadData(responseJSON.model_name);
-	alert(responseJSON.model_name);
-	//alert(responseJSON);
     }
 }
 
