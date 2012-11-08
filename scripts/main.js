@@ -12,6 +12,7 @@ Ext.onReady(function(){
 			region:'center',
 			    autoscroll: true,
 			    layout:'fit',		
+			    //			    height: '100%',
 			    margin: '1 2 0 2',
 			    items:[ tabs ]
 			    },{

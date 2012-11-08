@@ -17,10 +17,11 @@ var tabs_model_list = Ext.widget('panel',{
 			border: false,
                         items:[ selfmodel ]
                     },{*/
-                        title:'Model Database',
+			title:'Model Database',
+			layout: 'fit',
                         split: true,
 			border: false,
-			//			height: '100%',
+			//height: '100%',
                         items:[ premodel ]
                     }]
             },{

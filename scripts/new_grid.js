@@ -46,7 +46,7 @@ function variable_grid(responseJSON){
     //change Value or MolarConc                                              
     variable_grid.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
 	    if (selectedRecord.length) {
-		var gridrecord = grid1.getSelectionModel().getSelection();
+		var gridrecord = variable_grid.getSelectionModel().getSelection();
 		console.log(gridrecord[0].data);
 		//alert(gridrecord[0].data); 
 	    }
