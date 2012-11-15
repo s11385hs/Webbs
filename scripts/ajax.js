@@ -49,15 +49,16 @@ function handleSuccess(response) {
 	
 	tabs_entity.add({
 		title: 'Entity ' + (tabs_entity.items.length + 1),
-		    layout : 'column',
+		    layout: 'hbox',
 		    border: false,
 		    items: [
 			    variable_grid( responseJSON_variable ),
 			    process_grid(  responseJSON_process  ),
 			    {   
 				xtype: 'form',
-				    border: false,
-				    items: [{
+                                border: false,
+                                flex: 1,
+                                items: [{
 					title: 'Property Details(editable)',
 					    //xtype: 'fieldset',            
 					    //defaultType: 'textfield',

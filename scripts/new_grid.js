@@ -8,6 +8,8 @@ function variable_grid(responseJSON){
 	    stateId: 'stateGrid',
 	    autoScroll: true,
 	    title: 'Variable',
+            flex: 2,
+            height: '200%',
 	    viewConfig: { stripeRows: true },
 	    columns: [{
 		    text     : 'ID',
@@ -31,7 +33,7 @@ function variable_grid(responseJSON){
 		    }
 		},{
 		    text     : 'Molar Conc',
-		    width    : 150,
+		    //width    : 150,
 		    sortable : true,
 		    renderer : change,
 		    dataIndex: 'molarconc',
@@ -62,8 +64,9 @@ function process_grid (responseJSON){
 		}),
 	    stateful: true,
 	    stateId: 'stateGrid',
+            flex: 2,
 	    //height: Ext.getBody().getViewSize().height - 128,
-	    height: 400,
+	    height: '200%',
 	    autoScroll: true,
 	    title: 'Process',
 	    viewConfig: {
@@ -84,7 +87,7 @@ function process_grid (responseJSON){
 		    dataIndex: 'activity',
 		},{
 		    text     : 'Molar Activity',
-		    width    : 75,
+		    //width    : 75,
 		    sortable : true,
 		    renderer : change,
 		    dataIndex: 'm_activity',
