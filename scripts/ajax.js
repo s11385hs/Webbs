@@ -90,11 +90,10 @@ function handleSuccess(response) {
 					xtype: 'panel',
 					    border: false,
 					    style: { "background-color": '#ffffff', "text-align": 'center'  },
-					    // items: [ runbutton ]
 					    items: [
 						    Ext.create('Ext.Button', {
 							    text: 'Run!!',
-								scale: 'larege',
+								scale: 'large',
 								width: 100,
 								handler: function() {
 								var params = { "session_ID": session_ID };
