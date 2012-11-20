@@ -46,10 +46,7 @@ for anID in anEmlSupport.getVariableList():
     variable.append([ID, Path, Value, MolarConc])
 
 # written by Duke
-
     line = line + str(Path) +"/"+ str(ID) + "\t" + "0\t" +"0\t"+ str(Value) +"\t"+ str(MolarConc) + "\n"
-
-os.chdir('./result/guest/'+sessionID)
 
 if os.path.exists("PathDataSet.txt"):
     ft = open("PathDataSet.txt", "a")
