@@ -41,7 +41,7 @@ premodel.getSelectionModel().on('selectionchange', function(sm, selectedRecord) 
 	params = { "ID": selectedRecord[0].data.model };
 	//send Ajax Request
 	Ext.Ajax.request({
-		url: "/ecell/test.cgi",
+		url: "/ecell/test.cgi",		
 		    method: "GET",
 		    params: params,
 		    success: handleSuccess,

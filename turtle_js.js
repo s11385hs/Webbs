@@ -320,6 +320,7 @@ Ext.onReady(function(){
 		    selectionchange: function(model, records) {
 			if (records[0]) {
 			    this.up().down('form').down('fieldset').items.items[0].setValue(records[0].data.p_id);
+			    console.log(this.up().down('form').down('fieldset').items.items[0].setValue(records[0].data.p_id));
 			    this.up().down('form').down('fieldset').items.items[1].setValue(records[0].data.expression);
 			    this.up().down('form').down('fieldset').items.items[2].setValue(records[0].data.v_r_l);
 			    this.up().down('form').down('fieldset').items.items[3].setValue(records[0].data.property);

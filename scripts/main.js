@@ -20,7 +20,7 @@ Ext.onReady(function(){
 			    id: 'south-panel',
 			    margin: '0 2 3 2',
 			    height: '4%',
-			    html: "<div> webbs team</div>"
+			    html: "<div> ©webbs team</div>"
 				      }]
 		    });
     });

@@ -9,7 +9,7 @@ function variable_grid(responseJSON){
 	    autoScroll: true,
 	    title: 'Variable',
             flex: 2,
-            height: '200%',
+            height: '100%',
 	    viewConfig: { stripeRows: true },
 	    columns: [{
 		    text     : 'ID',
@@ -66,7 +66,7 @@ function process_grid (responseJSON){
 	    stateId: 'stateGrid',
             flex: 2,
 	    //height: Ext.getBody().getViewSize().height - 128,
-	    height: '200%',
+	    height: '100%',
 	    autoScroll: true,
 	    title: 'Process',
 	    viewConfig: {
@@ -98,15 +98,47 @@ function process_grid (responseJSON){
 		}],
 	    listeners:{
 		selectionchange: function(model, records) {
+			var gridrecord = process_grid.getSelectionModel().getSelection();
+			console.log(gridrecord[0].data.p_path);
+
+			var PATH = gridrecord[0].data.p_path + ":" + gridrecord[0].data.p_id;
+
+			params.PATH = PATH;
+			params.sessionID = session_ID;
+
 		    if (records[0]) {
-			this.up().down('form').down('fieldset').items[0].setValue(records[0].data.p_id);
-			this.up().down('form').down('fieldset').items[1].setValue(records[0].data.expression);
-			this.up().down('form').down('fieldset').items[2].setValue(records[0].data.v_r_l);
-			this.up().down('form').down('fieldset').items[3].setValue(records[0].data.property);
+			Ext.Ajax.request({
+				url: "/dysuke/es/getEachProcessProperty.cgi",
+				method: "GET",
+				params: params,
+ 			        success: this.getPropertySuccess,
+				failure: getPropertyFailure,
+			    });
+
 		    }
 		}
 	    }
 	});
+
+
+    process_grid.getPropertySuccess = function(response){
+	if (response.responseText !== undefined) {
+	    var responseJSON = JSON.parse(response.responseText);
+	    console.log(responseJSON.PropertyList.length);
+	    plist = new String();
+	    
+	    for (i=0; i < responseJSON.PropertyList.length; i = i+1){
+		plist += responseJSON.PropertyList[i].Name;
+		plist += ":"+"\t";
+	        plist += responseJSON.PropertyList[i].Value;
+		plist += "\n";
+	    }
+	    tabs_entity.getActiveTab().getRefItems()[2].getRefItems()[0].getRefItems()[1].setValue(responseJSON.ReactionName);
+	    tabs_entity.getActiveTab().getRefItems()[2].getRefItems()[0].getRefItems()[2].setValue(responseJSON.Expression);
+	    tabs_entity.getActiveTab().getRefItems()[2].getRefItems()[0].getRefItems()[3].setValue(responseJSON.VariableReferenceList);
+	    tabs_entity.getActiveTab().getRefItems()[2].getRefItems()[0].getRefItems()[4].setValue(plist);	    
+	}
+    };
 
     process_grid.getStore().loadData(responseJSON);
     return process_grid;

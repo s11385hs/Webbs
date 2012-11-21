@@ -50,7 +50,7 @@ function handleSuccess(response) {
 	tabs_entity.add({
 		title: 'Entity ' + (tabs_entity.items.length + 1),
 		    layout: 'hbox',
-		    border: false,
+		    border: false,		    
 		    items: [
 			    variable_grid( responseJSON_variable ),
 			    process_grid(  responseJSON_process  ),
@@ -60,31 +60,34 @@ function handleSuccess(response) {
                                 flex: 1,
                                 items: [{
 					title: 'Property Details(editable)',
-					    //xtype: 'fieldset',            
-					    //defaultType: 'textfield',
+					    xtype: 'fieldset',            
+					    defaultType: 'textfield',
 					    items: [{
 						fieldLabel: 'ID',
 						    name: 'p_id',
-						    disabled: true,
-						    editable: false,
-						    allowBlank: false,
-						    xtype: 'textareafield'
+						    disabled: false,
+						    editable: false,						 
+						    width: 220,
+						    value: ''
 						    },{
 						fieldLabel: 'Expression',
 						    name: 'expression',
 						    editable: false,
-						    disabled: true,
+						    disabled: false,
 						    xtype: 'textareafield',
-						    allowBlank: false,
+						    width: 220,
+						    height: 150
 						    },{
 						fieldLabel: 'Variable Reference List',
-							      name: 'v_r_l',
-							      disabled: true,
-							      xtype: 'textareafield',
-							      editable: false
-							      },{
+						    name: 'v_r_l',
+						    disabled: false,
+						    editable: false,
+						    xtype: 'textareafield',
+						    width: 220
+						    },{
 						fieldLabel: 'Property List',
-							      xtype: 'textareafield',
+						    xtype: 'textareafield',
+						    width: 220						      
 							      }]
 					    },{
 					xtype: 'panel',
@@ -121,6 +124,25 @@ function handleFailure(response) {
     }
 }
 
+//Click Process -> show property 
+function getPropertySuccess(response){
+    console.log(this);
+    if (response.responseText !== undefined) {
+        var responseJSON = JSON.parse(response.responseText);
+        var responseJSON_process  = responseJSON.Process;
+	console.log(responseJSON.Expression);
+
+    };
+
+}
+
+function getPropertyFailure(response){
+    if (response.responseText !== undefined) {
+	alert("fuck!!");
+    };
+
+}
+
 var charts = Array();
 var result_tabs= Ext.createWidget('tabpanel', {
 	border: false,
@@ -130,31 +152,22 @@ var result_tabs= Ext.createWidget('tabpanel', {
 
 function result_graph_success(response) {
     if (response.responseText !== undefined) {
-	var resultJSON = JSON.parse(response.responseText);	
-	//	console.log(result_tabs);
-	//	console.log(resultJSON[0]);
-	//	charts.push(show_graph(resultJSON[0].Data, resultJSON[0].Title));
+	var resultJSON = JSON.parse(response.responseText);
 	if ( result_tabs.items.length == 0 ){
 	    tabs.add({  
-		    title: 'Result' + (tabs_entity.items.length + 1),
+		    title: 'Result',
 			layout: 'fit',
-			//			width: '100%',
-			//			height: 600,
-			//			closable: true,
 			items: [ result_tabs ]
 			}).show();
 	};
-
+	
 	result_tabs.add({
-		title: 'Result',
-		//                title: 'Result' + (result_tabs.items.length + 1),
+                title: 'Result' + (result_tabs.items.length + 1),
 		    layout: 'fit',
 		    items:[ show_graph(resultJSON[0].Data, resultJSON[0].Title) ]
-		    });
-
-
-    }
-}
+		    }).show();
+    };
+};
 
 //Ajax failed
 function result_graph_failure(response){ 
