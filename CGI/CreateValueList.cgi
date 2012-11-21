@@ -22,14 +22,15 @@ if message_key in query:
 
 name = str( int(time.time() % 1296000) * 10 + int(random.random()) + 1048576 )
 
-os.mkdir("./results/" + name)
-os.system("cp ./models/" + ID + " ./results/" + name + "/" + name + ".em")
+#os.mkdir("./results/" + name)
+os.mkdir("../dysuke/es/results/guest/" + name)
+os.system("cp ./models/" + ID + " ../dysuke/es/results/guest/" + name + "/" + name + ".em")
 ##os.system("cp ./models/" + ID + ".em ./results/" + name + "/" + name + ".em")
 ##os.system("/usr/local/bin/ecell3-em2eml --outfile=./results/" + name + "/" + name   " ./results/" + name + "/" + name  )
-os.system("/usr/local/bin/ecell3-em2eml --outfile=./results/" + name + "/" + name + ".eml ./results/" + name + "/" + name + ".em")
-f = open("./results/" + name + "/history.txt", 'w+')
+os.system("/usr/local/bin/ecell3-em2eml --outfile=../dysuke/es/results/guest/" + name + "/" + name + ".eml ../dysuke/es/results/guest/" + name + "/" + name + ".em")
+f = open("../dysuke/es/results/guest/" + name + "/history.txt", 'w+')
 
-anEMLFileName = "./results/" + name + "/" + name + ".eml"
+anEMLFileName = "../dysuke/es/results/guest/" + name + "/" + name + ".eml"
 aSimulator = ecell.emc.Simulator()
 aSession = ecell.Session.Session(aSimulator)
 aSession.loadModel(anEMLFileName)

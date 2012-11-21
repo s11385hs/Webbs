@@ -42,7 +42,7 @@ premodel.getSelectionModel().on('selectionchange', function(sm, selectedRecord) 
 	//send Ajax Request
 	Ext.Ajax.request({
 		//		url: "/ecell/test.cgi",		
-		url: "/ecell/CreateValueList.cgi",
+		url: "/dysuke/es/CreateValueList.cgi",
 		    method: "GET",
 		    params: params,
 		    success: handleSuccess,

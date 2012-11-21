@@ -75,7 +75,7 @@ function variable_grid(responseJSON){
 	    //SetValue
 	    var params = { "sessionID":session_ID,"PathID":path_ID,"setValue":set_value};
 	    Ext.Ajax.request({
-		    url: "/ecell/SetValue.cgi",
+		    url: "/dysuke/es/SetValue.cgi",
 			method: "GET",
 			params: params,
 			success: set_value_success,
