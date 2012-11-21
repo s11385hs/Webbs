@@ -45,13 +45,42 @@ function variable_grid(responseJSON){
 	    plugins: [cellEditing]
 	});
     
-    //change Value or MolarConc                                              
-    variable_grid.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
-	    if (selectedRecord.length) {
-		var gridrecord = grid1.getSelectionModel().getSelection();
-		console.log(gridrecord[0].data);
-		//alert(gridrecord[0].data); 
+    //change Value or MolarConc
+    variable_grid.on('edit', function(editor, e) {
+	    var gridrecord = variable_grid.getSelectionModel().getSelection();
+	    //alert(gridrecord[0].data);
+
+	    //written by Duke
+	    var v_ID = gridrecord[0].data.v_id;
+	    var Path = gridrecord[0].data.path;
+	    var path_ID = Path +"/"+ v_ID;
+	    var set_value = e.value;
+
+		//SetValue_sucsess
+	    function set_value_success(response){
+		if (response.responseText !== undefined) {
+		    var resultJSON = JSON.parse(response.responseText);
+		    console.log(resultJSON);
+		    variable_grid.getStore().loadData(resultJSON);
+		}
 	    }
+
+	    //SetValue_failure                                               
+	    function set_value_failure(response){
+		if (response.responseText !== undefined) {
+		    alert("Missed setting value")
+			}
+	    }
+
+	    //SetValue
+	    var params = { "sessionID":session_ID,"PathID":path_ID,"setValue":set_value};
+	    Ext.Ajax.request({
+		    url: "/ecell/SetValue.cgi",
+			method: "GET",
+			params: params,
+			success: set_value_success,
+			failure: set_value_failure,
+			});
 	});
     variable_grid.getStore().loadData(responseJSON);
     return variable_grid;
