@@ -2,9 +2,9 @@
 var tabs_model_list = Ext.widget('panel',{
     default:{
 	    border: false,
-	    frame: true,
+	    //	    frame: true,
     },
-    frame: 'true',
+    frame: true,
     layout: { type: 'hbox' },
     height: '100%',
     items: [{
@@ -20,24 +20,26 @@ var tabs_model_list = Ext.widget('panel',{
 			title:'Model Database',
 			layout: 'fit',
                         split: true,
-			border: false,
+			frame: true,
+			//			border: false,
 			//height: '100%',
                         items:[ premodel ]
                     }]
             },{
                 title: 'About Models',
                 flex: 1,
+		frame: true,
 		border: false,
                 items:[{
                         title: 'Annotation',
                         split: true,
-			height: 250,
+			height: 200,
                         autoscroll: true,
                         html: 'Under Construction'
                     },{
                         title:'Pathway Map',
                         split: true,
-                        height: 250,
+                        height: 240,
                         autoscroll: true,
                         html: 'Under Construction'
                     }]
