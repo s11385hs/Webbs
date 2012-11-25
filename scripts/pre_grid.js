@@ -9,8 +9,10 @@ var selModel = Ext.create('Ext.selection.CheckboxModel', {
 
 Ext.define('StoreModel', {
 	extend: 'Ext.data.Model',
-	    fields: ['model']
+	    //fields: [{name:'model'}]
+	    fields: [{name:'model_name'}]
 	    });
+
 // make list of models
 var store_model = Ext.create('Ext.data.Store', {
 	storeId: 'store_model',
@@ -32,17 +34,19 @@ var premodel = Ext.create('Ext.grid.Panel', {
 	columns: [{
 		text: 'model',
 		flex: 1,
-		dataIndex: 'model'
+		//dataIndex: 'model'
+		dataIndex: 'model_name'
 	    }],
     });
 
 premodel.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
 	
-	params = { "ID": selectedRecord[0].data.model };
+	params = { "ID": selectedRecord[0].data.model_name + ".em" };
 	//send Ajax Request
 	Ext.Ajax.request({
-		//		url: "/ecell/test.cgi",		
-		url: "/dysuke/es/CreateValueList.cgi",
+		//alert("hoge"),
+		//url: "/ecell/test.cgi",		
+		    url: "/dysuke/es/CreateValueList.cgi",
 		    method: "GET",
 		    params: params,
 		    success: handleSuccess,
@@ -51,3 +55,26 @@ premodel.getSelectionModel().on('selectionchange', function(sm, selectedRecord) 
     });
 
 
+premodel.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
+        params = { file_name: selectedRecord[0].data.model_name + ".em" };
+        //send Ajax Request                                                                          
+        Ext.Ajax.request({
+                url: "/ecell/annotation_list.cgi",
+                    method: "GET",
+                    params: params,
+                    success: annotationSuccess,
+                    failure: annotationFailure,
+                    });
+    });
+
+premodel.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
+        params = { file_name: selectedRecord[0].data.model_name + ".em" };
+        //send Ajax Request                                                                          
+        Ext.Ajax.request({
+                url: "/ecell/pathway_map.cgi",
+                    method: "GET",
+                    params: params,
+                    success: mapSuccess,
+                    failure: mapFailure,
+                    });
+    });

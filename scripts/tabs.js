@@ -35,13 +35,13 @@ var tabs_model_list = Ext.widget('panel',{
                         split: true,
 			height: 200,
                         autoscroll: true,
-                        html: 'Under Construction'
+                        html: 'Please selection model'
                     },{
                         title:'Pathway Map',
                         split: true,
                         height: 240,
                         autoscroll: true,
-                        html: 'Under Construction'
+                        html: 'Please selection model'
                     }]
             }]
     });

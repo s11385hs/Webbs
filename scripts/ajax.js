@@ -1,8 +1,41 @@
+//Ajax request annotation of selected model                                                                           
+function annotationSuccess(response){
+    if (response.responseText !== undefined) {
+        var responseJSON = JSON.parse(response.responseText);
+        //alert(responseJSON)                                                                                         
+        tabs.getRefItems()[1].getRefItems()[0].getRefItems()[1].getRefItems()[1].body.dom.innerText =  responseJSON;
+    }
+}
+
+//Ajax failed                                                                                                         
+function annotationFailure(response){
+    if (response.responseText !== undefined) {
+        alert("Missed loadeing annotation")
+            }
+}
+
+//Ajax request pathway map of selected model                                                                          
+function mapSuccess(response){
+    if (response.responseText !== undefined) {
+        var responseJSON = JSON.parse(response.responseText);
+        tabs.getRefItems()[1].getRefItems()[0].getRefItems()[1].getRefItems()[2].body.dom.innerHTML = "<div style='background: -webkit-gradient(linear, left top, left bottom, from(4682b4),　to(b0c4de));'><img src='../../ecell/pathway_map/" + responseJSON + "' alt='' width='92%' height='69%'/></div>"
+	    }
+}
+
+//Ajax failed                                                                                                         
+function mapFailure(response){
+    if (response.responseText !== undefined) {
+        alert("Missed loadeing pathway map")
+            }
+}
+
+
 //Ajax request "load list of model"                                                                      
 function load_model_success(response){
     if (response.responseText !== undefined) {
-	var resultJSON = JSON.parse(response.responseText);
-	premodel.getStore().loadData(resultJSON);
+	var responseJSON = JSON.parse(response.responseText);
+	var responseJSON_model_name = responseJSON.model_name;
+	premodel.getStore().loadData(responseJSON.model_name);
     }
 }
 
@@ -15,7 +48,8 @@ function load_model_failure(response){
 
 var params = { "ID": "test" };
 Ext.Ajax.request({
-	url: "/ecell/list_models.cgi",
+	//url: "/ecell/list_models.cgi",
+	url: "/ecell/marco.cgi",
 	    method: "GET",
 	    params: params,
 	    success: load_model_success,
