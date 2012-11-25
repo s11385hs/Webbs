@@ -38,7 +38,7 @@ function handleSuccess(response) {
 	var responseJSON_variable = responseJSON.Variable;
 	session_ID = responseJSON.ID;
 	//	console.log(responseJSON_process);
-	alert(session_ID);
+	//	alert(session_ID);
 
 	if (tabs_entity.items.length == 0) {
 	    tabs.add({

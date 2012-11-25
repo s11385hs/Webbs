@@ -5,6 +5,7 @@ Ext.onReady(function(){
 		    border: false,
 		    items: [{
 			region: 'north',
+			    id: 'banner_panel',
 			    xtype: 'panel',
 			    height: '10%',
 			    border: false,
