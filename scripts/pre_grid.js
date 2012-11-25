@@ -41,11 +41,12 @@ var premodel = Ext.create('Ext.grid.Panel', {
 
 premodel.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
 	
-	params = { "ID": selectedRecord[0].data.model };
+	params = { "ID": selectedRecord[0].data.model_name + ".em" };
 	//send Ajax Request
 	Ext.Ajax.request({
-		//		url: "/ecell/test.cgi",		
-		url: "/dysuke/es/CreateValueList.cgi",
+		//alert("hoge"),
+		//url: "/ecell/test.cgi",		
+		    url: "/dysuke/es/CreateValueList.cgi",
 		    method: "GET",
 		    params: params,
 		    success: handleSuccess,
@@ -54,3 +55,26 @@ premodel.getSelectionModel().on('selectionchange', function(sm, selectedRecord) 
     });
 
 
+premodel.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
+        params = { file_name: selectedRecord[0].data.model_name + ".em" };
+        //send Ajax Request                                                                          
+        Ext.Ajax.request({
+                url: "/ecell/annotation_list.cgi",
+                    method: "GET",
+                    params: params,
+                    success: annotationSuccess,
+                    failure: annotationFailure,
+                    });
+    });
+
+premodel.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
+        params = { file_name: selectedRecord[0].data.model_name + ".em" };
+        //send Ajax Request                                                                          
+        Ext.Ajax.request({
+                url: "/ecell/pathway_map.cgi",
+                    method: "GET",
+                    params: params,
+                    success: mapSuccess,
+                    failure: mapFailure,
+                    });
+    });
