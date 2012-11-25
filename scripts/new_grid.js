@@ -100,7 +100,6 @@ function process_grid (responseJSON){
 	    stateful: true,
 	    stateId: 'stateGrid',
             flex: 2,
-	    //height: Ext.getBody().getViewSize().height - 128,
 	    height: '100%',
 	    height: 400,
 	    autoScroll: true,
