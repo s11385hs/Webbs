@@ -63,12 +63,6 @@ function variable_grid(responseJSON){
 		    console.log(resultJSON);
 		    variable_grid.getStore().loadData(resultJSON);
 		}
-
-    //change Value or MolarConc                                              
-    variable_grid.getSelectionModel().on('selectionchange', function(sm, selectedRecord) {
-	    if (selectedRecord.length) {
-		var gridrecord = grid1.getSelectionModel().getSelection();
-		console.log(gridrecord[0].data);
 	    }
 
 	    //SetValue_failure                                               
@@ -100,8 +94,8 @@ function process_grid (responseJSON){
 	    stateful: true,
 	    stateId: 'stateGrid',
             flex: 2,
+	    //height: Ext.getBody().getViewSize().height - 128,
 	    height: '100%',
-	    height: 400,
 	    autoScroll: true,
 	    title: 'Process',
 	    viewConfig: {
